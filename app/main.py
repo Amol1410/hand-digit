@@ -7,40 +7,40 @@ import base64
 
 # App and model initializer
 app = Flask(__name__)
-title = 'Number Recognizer'
+title = 'Handwritten Digit Recognition'
 
 # Loading prebuilt AI
 model = keras.models.load_model('app/ai.h5')
 
 # GET method
-@app.route('/')
-def home():
-    return render_template('home.html', title=title)
+# @app.route('/')
+# def home():
+#     return render_template('home.html', title=title)
 
-@app.route('/drawing', methods=['GET'])
+@app.route('/', methods=['GET'])
 def drawing():
     return render_template('drawing.html', title=title)
 
 
-# POST method
-@app.route('/', methods=['POST'])
-def result():
-    print('Post request recieved')
-    file_str = request.files['file'].read()
-    file_np = np.fromstring(file_str, np.uint8)
-    print(f'File recieved : {file_np.shape}')
+# # POST method
+# @app.route('/', methods=['POST'])
+# def result():
+#     print('Post request recieved')
+#     file_str = request.files['file'].read()
+#     file_np = np.fromstring(file_str, np.uint8)
+#     print(f'File recieved : {file_np.shape}')
 
-    file_np = cv2.resize(file_np,(28,28))
-    file_np = np.expand_dims(file_np, axis=0)
+#     file_np = cv2.resize(file_np,(28,28))
+#     file_np = np.expand_dims(file_np, axis=0)
 
-    try:
-        prediction = np.argmax(model.predict(file_np))
-        print(f"Prediction : {str(prediction)}")
-        response = jsonify(response = str(prediction),status = 200)
-    except Exception as e:
-        response = jsonify(response = str(e),status = 400)
+#     try:
+#         prediction = np.argmax(model.predict(file_np))
+#         print(f"Prediction : {str(prediction)}")
+#         response = jsonify(response = str(prediction),status = 200)
+#     except Exception as e:
+#         response = jsonify(response = str(e),status = 400)
 
-    return response
+#     return response
 
 @app.route('/canvas', methods=['POST'])
 def canvas():
