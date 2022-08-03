@@ -22,7 +22,7 @@
     </nav>
     {% if response %}
         {% if success %}
-            <p class="alert alert-success m-4 text-center">Prediction Digit is : {{ response }}</p>
+            <p class="alert alert-success m-4 text-center">Prediction Result : {{ response }}</p>
         {% else %}
             <p class="alert alert-success m-4 text-center">{{ response }}</p>
         {% endif %}
@@ -31,7 +31,7 @@
 		<div class="row" style="width: 280px; margin: auto;">
 			<div class="tools d-flex justify-content-between">
 				<button class="btn btn-danger" id="clear">Clear</button>
-				<button class="btn btn-success" id="pastel" onclick="pastel()">Draw</button>
+				<button class="btn btn-success" id="pastel" onclick="pastel()">Pastel</button>
 				<button class="btn btn-warning" id="eraser" onclick="eraser()">Eraser</button>
 			</div>
 		</div>
@@ -120,7 +120,7 @@
 				const canvas = document.querySelector('#canvas');
 				const context = canvas.getContext('2d');
 				context.filter = 'invert(0)';
-                radius = 8;
+                radius = 10;
 			});
 
 			// Eraser
@@ -129,7 +129,7 @@
 				const canvas = document.querySelector('#canvas');
 				const context = canvas.getContext('2d');
 				context.filter = 'invert(1)';
-                radius = 20;
+                radius = 30;
 			});
 		});
 

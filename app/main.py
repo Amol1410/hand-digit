@@ -10,7 +10,7 @@ app = Flask(__name__)
 title = 'Number Recognizer'
 
 # Loading prebuilt AI
-model = keras.models.load_model('app/savemodel.h5')
+model = keras.models.load_model('app/ai.h5')
 
 # GET method
 @app.route('/')
